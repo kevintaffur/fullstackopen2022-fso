@@ -1,6 +1,7 @@
 note over browser:
 browser executes the event handler
-that renders notes to display
+to render data to display (notes in this case)
+(no extra http requests)
 end note
 
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
