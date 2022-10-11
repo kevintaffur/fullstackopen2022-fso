@@ -1,0 +1,11 @@
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: {"message":"note created"} (HTTP 201)
+
+note over browser:
+this avoids the redirection message
+end note
