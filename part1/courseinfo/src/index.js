@@ -24,21 +24,22 @@ const Header = (props) => (
 )
 
 const Content = (props) => (
-  <>
-    <p>
-      {props.part1} {props.exercise1}
-    </p>
-    <p>
-      {props.part2} {props.exercise2}
-    </p>
-    <p>
-      {props.part3} {props.exercise3}
-    </p>
-  </>
+  <div>
+    <Part part={props.part1} exercise={props.exercise1} />
+    <Part part={props.part2} exercise={props.exercise2} />
+    <Part part={props.part3} exercise={props.exercise3} />
+  </div>
+)
+
+const Part = (props) => (
+  <p>
+    {props.part} {props.exercise}
+  </p>
 )
 
 const Total = (props) => (
   <p>Number of exercises {props.total}</p>
 )
 
+export default App;
 ReactDOM.render(<App />, document.getElementById('root'));
