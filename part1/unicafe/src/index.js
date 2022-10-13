@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>
@@ -42,17 +42,21 @@ const Statistics = ({ good, neutral, bad }) => {
 const StatisticLine = ({ text, value }) => {
   if (text === "positive") {
     return (
-      <tr>
-        <td>{text}</td>
-        <td>{value} %</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>{text}</td>
+          <td>{value} %</td>
+        </tr>
+      </tbody>
     )
   }
   return (
-    <tr>
-      <td>{text}</td>
-      <td>{value}</td>
-    </tr>
+    <tbody>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
+    </tbody>
   )
 }
 
@@ -76,4 +80,5 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
