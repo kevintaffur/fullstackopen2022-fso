@@ -28,27 +28,33 @@ const Statistics = ({ good, neutral, bad }) => {
     )
   }
   return (
-    <div>
+    <table>
       <StatisticLine text="good" value={good} />
-      <br />
       <StatisticLine text="neutral" value={neutral} />
-      <br />
       <StatisticLine text="bad" value={bad} />
-      <br />
       <StatisticLine text="all" value={all} />
-      <br />
       <StatisticLine text="average" value={average} />
-      <br />
-      <StatisticLine text="positive" value={positive} /> %
-    </div>
+      <StatisticLine text="positive" value={positive} />
+    </table>
   )
 }
 
-const StatisticLine = ({ text, value }) => (
-  <>
-    {text} {value}
-  </>
-)
+const StatisticLine = ({ text, value }) => {
+  if (text === "positive") {
+    return (
+      <tr>
+        <td>{text}</td>
+        <td>{value} %</td>
+      </tr>
+    )
+  }
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
 
 const App = () => {
   // Each button has his own state
