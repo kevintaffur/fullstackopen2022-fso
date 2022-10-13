@@ -18,18 +18,29 @@ const Feedback = ({ addGoodVote, addNeutralVote, addBadVote }) => (
   </>
 )
 
-const Statistics = ({ good, neutral, bad }) => (
-  <>
-    <h2>statistics</h2>
-    <div>
-      good {good}
-      <br />
-      neutral {neutral}
-      <br />
-      bad {bad}
-    </div>
-  </>
-)
+const Statistics = ({ good, neutral, bad }) => {
+  const all = good + neutral + bad;
+  const average = (good - bad) / all;
+  const positive = good / all * 100;
+  return (
+    <>
+      <h2>statistics</h2>
+      <div>
+        good {good}
+        <br />
+        neutral {neutral}
+        <br />
+        bad {bad}
+        <br />
+        all {all}
+        <br />
+        average {average}
+        <br />
+        positive {positive} %
+      </div>
+    </>
+  )
+}
 
 const App = () => {
   // Each button has his own state
