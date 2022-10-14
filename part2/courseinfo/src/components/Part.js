@@ -1,8 +1,7 @@
 const Part = ({ part }) => (
-  <>
+  <div>
     {part.name} {part.exercises}
-    <br />
-  </>
+  </div>
 )
 
 export default Part;
