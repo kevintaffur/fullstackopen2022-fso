@@ -3,27 +3,43 @@ import Person from './components/Person';
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    {
+      name: 'Arto Hellas',
+      number: '040-1234567'
+    }
   ]);
   const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
 
   const addPerson = (event) => {
     event.preventDefault();
 
-    const alreadyExist = persons.find(person => person.name === newName);
-    if (!alreadyExist) {
+    const nameAlreadyExist = persons.find(person => person.name === newName);
+    const numberAlreadyExist = persons.find(person => person.number === newNumber);
+
+    if (nameAlreadyExist && numberAlreadyExist) {
+      alert(`${newName} and ${newNumber} are already added to phonebook`);
+    } else if (nameAlreadyExist) {
+      alert(`${newName} is already added to phonebook`);
+    } else if (numberAlreadyExist) {
+      alert(`${newNumber} is already added to phonebook`);
+    } else {
       const newPerson = {
-        name: newName
+        name: newName,
+        number: newNumber
       };
       setPersons(persons.concat(newPerson));
       setNewName('');
-      return;
+      setNewNumber('');
     }
-    alert(`${newName} is already added to phonebook`);
   }
 
-  const handlePersonChange = (event) => {
+  const handleNameChange = (event) => {
     setNewName(event.target.value);
+  }
+
+  const handleNumberChange = (event) => {
+    setNewNumber(event.target.value);
   }
 
   return (
@@ -33,7 +49,13 @@ const App = () => {
         <div>
           name: <input
             value={newName}
-            onChange={handlePersonChange}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div>
+          number: <input
+            value={newNumber}
+            onChange={handleNumberChange}
           />
         </div>
         <div>
