@@ -75,7 +75,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {persons.filter(person => person.name.includes(search))
+      {persons.filter(person => person.name.toLowerCase().includes(search.toLowerCase()))
         .map(person => <Person key={person.name} person={person} />)
       }
     </div>
