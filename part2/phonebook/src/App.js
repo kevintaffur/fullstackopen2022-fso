@@ -3,12 +3,15 @@ import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
 import personService from "./services/persons";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [search, setSearch] = useState('');
+  const [message, setMessage] = useState(null);
+  const [notificationType, setNotificationType] = useState(null);
 
   useEffect(() => {
     personService
@@ -36,6 +39,12 @@ const App = () => {
             setPersons(persons.map(person => person.id !== updatedPerson.id ? person : returnedPerson));
             setNewName('');
             setNewNumber('');
+            setMessage(`${updatedPerson.name} updated`);
+            setNotificationType('success');
+            setTimeout(() => {
+              setMessage(null);
+              setNotificationType(null);
+            }, 5000);
           });
       }
     } else if (numberAlreadyExist) {
@@ -52,6 +61,12 @@ const App = () => {
           setPersons(persons.concat(returnedPerson));
           setNewName('');
           setNewNumber('');
+          setMessage(`${newPerson.name} added`);
+          setNotificationType('success');
+          setTimeout(() => {
+            setMessage(null);
+            setNotificationType(null);
+          }, 5000);
         });
     }
   }
@@ -63,6 +78,12 @@ const App = () => {
         .remove(id)
         .then(_ => {
           setPersons(persons.filter(person => person.id !== personToDelete.id));
+          setMessage(`${personToDelete.name} deleted`);
+          setNotificationType('success');
+          setTimeout(() => {
+            setMessage(null);
+            setNotificationType(null);
+          }, 5000);
         });
     }
   }
@@ -82,6 +103,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} type={notificationType} />
       <Filter search={search} handleChange={handleSearchChange} />
       <h3>Add a new</h3>
       <PersonForm
