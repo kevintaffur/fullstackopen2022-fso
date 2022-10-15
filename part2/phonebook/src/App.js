@@ -41,6 +41,12 @@ const App = () => {
             setNewNumber('');
             setMessage(`${updatedPerson.name} updated`);
             setNotificationType('success');
+          })
+          .catch(_ => {
+            setMessage(`Information of ${updatedPerson.name} has already been removed from server`);
+            setNotificationType('error');
+          })
+          .finally(() => {
             setTimeout(() => {
               setMessage(null);
               setNotificationType(null);
@@ -78,8 +84,14 @@ const App = () => {
         .remove(id)
         .then(_ => {
           setPersons(persons.filter(person => person.id !== personToDelete.id));
-          setMessage(`${personToDelete.name} deleted`);
+          setMessage(`${personToDelete.name} removed`);
           setNotificationType('success');
+        })
+        .catch(_ => {
+          setMessage(`Information of ${personToDelete.name} has already been removed from server`);
+          setNotificationType('error');
+        })
+        .finally(() => {
           setTimeout(() => {
             setMessage(null);
             setNotificationType(null);
