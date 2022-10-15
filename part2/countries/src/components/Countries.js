@@ -1,11 +1,10 @@
 import Country from "./Country";
-import CountryBasicData from "./CountryBasicData";
 
 const Countries = ({ countries, search }) => {
   const found = countries.filter(country => country.name.common.toLowerCase().includes(search.toLowerCase()));
 
   if (found.length === 1) {
-    return <CountryBasicData country={found[0]} />
+    return <Country country={found[0]} showData={true} />
   } else if (found.length > 10) {
     return (
       <div>
@@ -16,7 +15,7 @@ const Countries = ({ countries, search }) => {
   return (
     <div>
       {found
-        .map(country => <Country key={country.name.official} country={country} />)}
+        .map(country => <Country key={country.name.official} country={country} showData={false} />)}
     </div>
   )
 }
