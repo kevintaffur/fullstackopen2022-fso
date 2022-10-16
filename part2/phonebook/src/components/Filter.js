@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Filter = ({ search, handleChange }) => (
   <div>
     filter shown with <input
