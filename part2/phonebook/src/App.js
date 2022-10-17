@@ -42,7 +42,8 @@ const App = () => {
             setMessage(`${updatedPerson.name} updated`);
             setNotificationType('success');
           })
-          .catch(_ => {
+          .catch(err => {
+            console.log(err);
             setMessage(`Information of ${updatedPerson.name} has already been removed from server`);
             setNotificationType('error');
           })
@@ -69,6 +70,12 @@ const App = () => {
           setNewNumber('');
           setMessage(`${newPerson.name} added`);
           setNotificationType('success');
+        })
+        .catch(err => {
+          setMessage(err.response.data.error);
+          setNotificationType('error');
+        })
+        .finally(() => {
           setTimeout(() => {
             setMessage(null);
             setNotificationType(null);
